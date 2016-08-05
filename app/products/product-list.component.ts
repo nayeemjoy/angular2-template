@@ -1,5 +1,6 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnssInit} from 'angular2/core';
 import {ProductFilterPipe} from './product-filter.pipe';
+import {StarComponent} from '../shared/star.component';
 
 import {IProduct} from './product';
 @Component({
@@ -7,7 +8,8 @@ import {IProduct} from './product';
 	templateUrl :
 	"app/products/product-list.component.html",
     styleUrls: ['app/products/product-list.component.css'],
-    pipes : [ProductFilterPipe]
+    pipes : [ProductFilterPipe],
+    directives : [StarComponent]
 })
 
 export class ProductListComponent  implements OnInit{
@@ -15,7 +17,7 @@ export class ProductListComponent  implements OnInit{
    imageWidth : number = 50;
    imageHeight : number = 2;
    showImage : boolean = false;
-   listFilter : string = "cart";
+   listFilter : string = "";
    products : IProduct[] = [
         {
             "productId": 1,
@@ -77,4 +79,8 @@ export class ProductListComponent  implements OnInit{
         console.log('Product Component Initiated');
         
     };
+
+    onRatingClicked(message : string) : void{
+        this.pageTitle = "Product List : " + message;
+    }
 }
